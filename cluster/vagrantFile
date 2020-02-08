@@ -1,0 +1,120 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "lb" do |lb|
+    lb.vm.network "private_network", ip: "192.168.20.10"
+    lb.vm.hostname = "lb"
+    lb.disksize.size = '32768MB'
+    lb.vm.box = "generic/centos7"
+    lb.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
+    lb.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    lb.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+    lb.vm.provision "shell", path: "init_scripts/lb_init.sh"
+    lb.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+      vb.cpus = 2
+      vb.name = "lb"
+    end
+  end
+
+  config.vm.define "controller0" do |controller0|
+    controller0.vm.network "private_network", ip: "192.168.20.11"
+    controller0.vm.hostname = "controller0"
+    controller0.disksize.size = '32768MB'
+    controller0.vm.box = "generic/centos7"
+    controller0.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
+    controller0.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    controller0.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+    controller0.vm.provision "shell", path: "init_scripts/controller_init.sh"
+    controller0.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+      vb.cpus = 2
+      vb.name = "controller0"
+    end
+  end
+
+  config.vm.define "controller1" do |controller1|
+    controller1.vm.network "private_network", ip: "192.168.20.12"
+    controller1.vm.hostname = "controller1"
+    controller1.disksize.size = '32768MB'
+    controller1.vm.box = "generic/centos7"
+    controller1.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
+    controller1.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    controller1.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+    controller1.vm.provision "shell", path: "init_scripts/controller_init.sh"
+    controller1.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+      vb.cpus = 2
+      vb.name = "controller1"
+    end
+  end
+
+  config.vm.define "controller2" do |controller2|
+    controller2.vm.network "private_network", ip: "192.168.20.13"
+    controller2.vm.hostname = "controller2"
+    controller2.disksize.size = '32768MB'
+    controller2.vm.box = "generic/centos7"
+    controller2.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
+    controller2.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    controller2.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+    controller2.vm.provision "shell", path: "init_scripts/controller_init.sh"
+    controller2.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+      vb.cpus = 2
+      vb.name = "controller2"
+    end
+  end 
+  
+  config.vm.define "worker0" do |worker0|
+    worker0.vm.network "private_network", ip: "192.168.20.21"
+    worker0.vm.hostname = "worker0"
+    worker0.disksize.size = '32768MB'
+    worker0.vm.box = "generic/centos7"
+    worker0.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
+    worker0.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    worker0.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+    worker0.vm.provision "shell", path: "init_scripts/worker_init.sh"
+    worker0.vm.provider "virtualbox" do |vb|
+      vb.memory = "8192"
+      vb.cpus = 2
+      vb.name = "worker0"
+    end
+  end   
+
+  config.vm.define "worker1" do |worker1|
+    worker1.vm.network "private_network", ip: "192.168.20.22"
+    worker1.vm.hostname = "worker1"
+    worker1.disksize.size = '32768MB'
+    worker1.vm.box = "generic/centos7"
+    worker1.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
+    worker1.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    worker1.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+    worker1.vm.provision "shell", path: "init_scripts/worker_init.sh"
+    worker1.vm.provider "virtualbox" do |vb|
+      vb.memory = "8192"
+      vb.cpus = 2
+      vb.name = "worker1"
+    end
+  end 
+
+  config.vm.define "worker2" do |worker2|
+    worker2.vm.network "private_network", ip: "192.168.20.23"
+    worker2.vm.hostname = "worker2"
+    worker2.disksize.size = '32768MB'
+    worker2.vm.box = "generic/centos7"
+    worker2.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
+    worker2.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    worker2.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+    worker2.vm.provision "shell", path: "init_scripts/worker_init.sh"
+    worker2.vm.provider "virtualbox" do |vb|
+      vb.memory = "8192"
+      vb.cpus = 2
+      vb.name = "worker2"
+    end
+  end 
+
+
+end
