@@ -1,0 +1,5 @@
+**/*.kubeconfig
+**/*.pem
+.DS*
+.vagrant
+**/*.out
