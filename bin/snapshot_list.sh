@@ -7,5 +7,4 @@ for VMID in $VM_IDS; do
     echo VM ID = ${VMID}
     VBoxManage snapshot ${VMID} list
 
-
 done

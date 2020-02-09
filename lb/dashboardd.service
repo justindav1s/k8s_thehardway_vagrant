@@ -1,0 +1,11 @@
+[Unit]
+Description=Kubernetes Dashboard port-forwarder
+Documentation=https://github.com/justindav1s/k8s_thehardway_vagrant
+
+[Service]
+ExecStart=/bin/bash -c /usr/local/bin/dashboardd.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -25,6 +25,7 @@ firewall-cmd --zone=public --permanent --add-port=6443/tcp
 firewall-cmd --zone=public --permanent --add-port=2379/tcp
 firewall-cmd --zone=public --permanent --add-port=2380/tcp
 firewall-cmd --zone=public --permanent --add-port=22/tcp
+systemctl restart firewalld
 firewall-cmd --zone=public --list-ports
 
 wget -q "https://github.com/etcd-io/etcd/releases/download/v3.4.0/etcd-v3.4.0-linux-amd64.tar.gz"

@@ -26,8 +26,13 @@ cd ~
 # Firewall Config
 firewall-cmd --zone=public --permanent --add-service=http
 firewall-cmd --zone=public --permanent --add-service=https
+firewall-cmd --zone=public --permanent --add-port=8443/tcp
+firewall-cmd --zone=public --permanent --add-port=80/tcp
+firewall-cmd --zone=public --permanent --add-port=443/tcp
 firewall-cmd --zone=public --permanent --add-port=6443/tcp
 firewall-cmd --zone=public --permanent --add-service=dns
+systemctl restart firewalld
+firewall-cmd --list-all
 
 # dnsmasq config
 cat > /etc/dnsmasq.d/kube <<EOF

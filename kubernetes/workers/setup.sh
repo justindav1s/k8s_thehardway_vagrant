@@ -24,7 +24,8 @@ i=0
 
 for INTERNAL_IP in 192.168.20.21 192.168.20.22 192.168.20.23; do
 
-POD_CIDR="192.168.3${i}.0/24"
+POD_CIDR="192.168.30.0/24"
+//POD_CIDR="10.244.0.0/16"
 
 cat > ${INTERNAL_IP}.10-bridge.conf <<EOF
 {

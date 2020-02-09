@@ -3,6 +3,8 @@
 VM_IDS=$(VBoxManage list vms | awk '{print $2}' | sed 's/{//g' |  sed 's/}//g')
 
 
+PROJ_HOME=$(pwd)/..
+
 for VMID in $VM_IDS; do
 
     echo VM ID = ${VMID}
@@ -11,7 +13,7 @@ for VMID in $VM_IDS; do
     sleep 5
 done
 
-rm -rf ../.vagrant
+rm -rf ${PROJ_HOME}/cluster/.vagrant
 
 rm -rf ~VirtualBox\ VMs/lb
 rm -rf ~/VirtualBox\ VMs/controller0

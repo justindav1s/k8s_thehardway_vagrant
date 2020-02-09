@@ -51,6 +51,12 @@ rm -rf cni-plugins-linux-amd64-v0.8.2.tgz containerd* crictl-v1.15.0-linux-amd64
 
 firewall-cmd --zone=public --permanent --add-port=6443/tcp
 firewall-cmd --zone=public --permanent --add-port=10250/tcp
+firewall-cmd --zone=public --permanent --add-port=80/tcp
+firewall-cmd --zone=public --permanent --add-port=443/tcp
+firewall-cmd --zone=public --permanent --add-service=https
+firewall-cmd --zone=public --permanent --add-service=http
+systemctl restart firewalld
+firewall-cmd --list-all
 
 nmcli con mod 'System eth0' ipv4.dns 192.168.20.10
 nmcli con mod 'System eth0' ipv4.ignore-auto-dns yes
